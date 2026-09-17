@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Christopher Butcher’s work on LearnWithAI: a quiz generator for UNC Chapel Hill, built with FastAPI, Angular, PostgreSQL, and Azure OpenAI." />
+  <title>LearnWithAI Quiz Generator | Christopher Butcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header container">
+    <a class="name" href="#main">Christopher Butcher</a>
+    <nav aria-label="Page sections"><a href="#contribution">My Contribution</a><a href="#walkthrough-title">The Student Experience</a><a href="#engineering-title">Engineering</a></nav>
+  </header>
+  <main id="main" class="container">
+    <section class="intro" aria-labelledby="project-title">
+      <div>
+        <h1 id="project-title">LearnWithAI <br /><span class="title-accent">AI Quiz Generator</span></h1>
+      </div>
+      <div class="intro-copy">
+        <p class="lead">Turning course material into practice, with generated questions and feedback on every answer.</p>
+        <p class="context">Built by a four-person team for UNC’s LearnWithAI platform. I developed the backend, AI generation pipeline, and tests.</p>
+        <a class="text-link" href="#contribution">My contribution <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <div class="project-brief">
+      <section id="contribution" class="contribution-section" aria-labelledby="contribution-title">
+        <p class="section-label">My contribution</p><h2 id="contribution-title">Building the <br />backend.</h2><p class="section-summary">My work covered the path from a student’s source material to validated, stored quiz questions.</p>
+        <ul class="contributions">
+          <li>Built the asynchronous quiz-generation pipeline with RabbitMQ and Dramatiq so model generation runs outside the API request.</li>
+          <li>Integrated Azure OpenAI and used Pydantic to validate the structure of generated questions before saving them.</li>
+          <li>Developed authenticated FastAPI endpoints, service and repository layers, and PostgreSQL persistence.</li>
+          <li>Wrote unit, integration, and end-to-end tests for the quiz-generation system.</li>
+        </ul>
+      </section>
+      <section class="stack-panel" aria-labelledby="stack-title">
+        <h2 id="stack-title">Technology stack</h2>
+        <dl class="stack">
+          <div><dt>Frontend</dt><dd>Angular · TypeScript</dd></div>
+          <div><dt>Backend</dt><dd>Python · FastAPI</dd></div>
+          <div><dt>Database</dt><dd>PostgreSQL</dd></div>
+          <div><dt>ORM</dt><dd>SQLModel</dd></div>
+          <div><dt>Background jobs</dt><dd>RabbitMQ · Dramatiq</dd></div>
+          <div><dt>AI service</dt><dd>Azure OpenAI</dd></div>
+          <div><dt>Validation</dt><dd>Pydantic</dd></div>
+        </dl>
+      </section>
+    </div>
+
+    <section class="walkthrough" aria-labelledby="walkthrough-title">
+      <div class="section-intro">
+        <div><p class="section-label">The student experience</p><h2 id="walkthrough-title">From setup to review</h2></div>
+        <p>Students start with their own notes or PDFs, then choose multiple-choice, true/false, or written-response questions. Each path leads from practice to feedback and review.</p>
+      </div>
+
+      <section class="journey" aria-labelledby="setup-title">
+        <div class="journey-copy">
+        <div class="journey-heading"><span class="journey-index">01 / Create a quiz</span><h3 id="setup-title">From course notes <br />to practice questions</h3></div>
+        <p class="written-intro">Start with a PDF, pasted notes, or both. Choose a question format, and the app generates a ten-question practice quiz in the background.</p>
+        </div>
+        <div class="journey-gallery">
+        <div class="screens">
+          <figure>
+            <a class="screen" href="assets/Quiz Config Screen.png" aria-label="View quiz setup screenshot at full size"><img src="assets/Quiz Config Screen.png" width="2048" height="1321" fetchpriority="high" alt="Quiz setup with three question formats, PDF upload, and a field for course notes." /></a>
+            <figcaption><strong>Choose a format and add material</strong>Upload a PDF, paste notes, or use both. Students select multiple choice, true/false, or written response before generating a quiz.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/MC Loading Screen.png" aria-label="View generation screenshot at full size"><img src="assets/MC Loading Screen.png" width="2048" height="1324" loading="lazy" decoding="async" alt="Quiz loading screen while questions are generated in the background." /></a>
+            <figcaption><strong>Generate ten questions</strong>The app shows a loading state while a background worker creates the quiz. When generation finishes, the questions load automatically.</figcaption>
+          </figure>
+        </div>
+        </div>
+      </section>
+
+      <section class="journey" aria-labelledby="choice-title">
+        <div class="journey-copy">
+        <div class="journey-heading"><span class="journey-index">02 / Check understanding</span><h3 id="choice-title">Multiple choice <br />&amp; true/false</h3></div>
+        <p class="written-intro">A quick check of understanding: answer, get an explanation, then review the results. Multiple-choice and true/false quizzes follow the same flow.</p>
+        </div>
+        <div class="journey-gallery">
+        <div class="screens">
+          <figure>
+            <a class="screen" href="assets/MC Question.png" aria-label="View answer a question screenshot at full size"><img src="assets/MC Question.png" width="2396" height="1622" loading="lazy" decoding="async" alt="Multiple-choice question with four answer options and quiz progress." /></a>
+            <figcaption><strong>Answer a question</strong>Choose from four options, or select true or false in that mode. A progress bar tracks the student’s position.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/MC Feedback.png" aria-label="View get immediate feedback screenshot at full size"><img src="assets/MC Feedback.png" width="2048" height="1384" loading="lazy" decoding="async" alt="Multiple-choice feedback showing the correct answer and explanation." /></a>
+            <figcaption><strong>Get immediate feedback</strong>The correct answer and an explanation appear immediately, before the student moves to the next question.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/MC Quiz Summary.png" aria-label="View see the result screenshot at full size"><img src="assets/MC Quiz Summary.png" width="2468" height="1522" loading="lazy" decoding="async" alt="Multiple-choice quiz summary showing a score and answer counts." /></a>
+            <figcaption><strong>See the result</strong>After the final question, students see their percentage score and counts of correct, incorrect, and unanswered questions.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/MC Quiz Summary 2.png" aria-label="View review individual questions screenshot at full size"><img src="assets/MC Quiz Summary 2.png" width="2464" height="1624" loading="lazy" decoding="async" alt="Question breakdown with correct and incorrect results and review links." /></a>
+            <figcaption><strong>Review individual questions</strong>The question breakdown links back to each answer and explanation, making it easy to revisit missed concepts.</figcaption>
+          </figure>
+        </div>
+        </div>
+      </section>
+
+      <section class="journey" aria-labelledby="written-title">
+        <div class="journey-copy">
+        <div class="journey-heading"><span class="journey-index">03 / Explain in your own words</span><h3 id="written-title">Written responses <br />&amp; AI feedback</h3></div>
+        <p class="written-intro">Written-response mode asks students to explain a concept in their own words. Each answer is graded in the background against the question and a model answer.</p>
+        </div>
+        <div class="journey-gallery">
+        <div class="screens">
+          <figure>
+            <a class="screen" href="assets/QA Question.png" aria-label="View write an explanation screenshot at full size"><img src="assets/QA Question.png" width="2048" height="1388" loading="lazy" decoding="async" alt="Written-response question with a text field, word counter, and submit button." /></a>
+            <figcaption><strong>Write an explanation</strong>Students answer in their own words, with a limit of 500 words per response.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/QA Loading Screen.png" aria-label="View submit for grading screenshot at full size"><img src="assets/QA Loading Screen.png" width="2394" height="1620" loading="lazy" decoding="async" alt="Written response being evaluated with a grading progress message." /></a>
+            <figcaption><strong>Submit for grading</strong>A background job evaluates the response against the question and a model answer while the interface shows the grading state.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/QA Feedback.png" aria-label="View read the feedback screenshot at full size"><img src="assets/QA Feedback.png" width="2048" height="1384" loading="lazy" decoding="async" alt="AI feedback with a score, strengths, improvements, and a model answer." /></a>
+            <figcaption><strong>Read the feedback</strong>Each result includes a score out of 10, strengths, areas to improve, and a model answer.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/QA Feedback 2.png" aria-label="View identify gaps in understanding screenshot at full size"><img src="assets/QA Feedback 2.png" width="2380" height="1622" loading="lazy" decoding="async" alt="Lower-scoring written response with missing concepts and a model answer." /></a>
+            <figcaption><strong>Identify gaps in understanding</strong>Lower-scoring responses highlight what was missing and show what a complete answer would include.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/QA Quiz Summary.png" aria-label="View review the whole quiz screenshot at full size"><img src="assets/QA Quiz Summary.png" width="2048" height="1354" loading="lazy" decoding="async" alt="Written-response quiz summary with an overall score and strong and weak answer counts." /></a>
+            <figcaption><strong>Review the whole quiz</strong>The summary combines all ten scores and separates strong answers from those needing more practice.</figcaption>
+          </figure>
+          <figure>
+            <a class="screen" href="assets/QA Quiz Summary 2.png" aria-label="View retry weak answers screenshot at full size"><img src="assets/QA Quiz Summary 2.png" width="2470" height="1628" loading="lazy" decoding="async" alt="Per-question score breakdown and a button to retry weak answers." /></a>
+            <figcaption><strong>Retry weak answers</strong>Students can retry questions scored below 7 out of 10, focusing their next attempt on the concepts that need attention.</figcaption>
+          </figure>
+        </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="engineering" aria-labelledby="engineering-title">
+      <div class="section-intro">
+        <div><p class="section-label">Engineering</p><h2 id="engineering-title">Built around <br />background work.</h2></div>
+        <p>Generation and written-response grading run as background jobs. FastAPI enqueues work through RabbitMQ, the message broker. Separate Dramatiq workers process those jobs and call Azure OpenAI.<br /><a class="text-link technical-link" href="https://gist.github.com/cbutcherunc/6b3a449043dd774e31dd10914a03a437" target="_blank" rel="noopener noreferrer">Read the technical documentation <span aria-hidden="true">↗</span></a></p>
+      </div>
+      <ol class="pipeline" aria-label="Question generation request path">
+        <li><span class="pipeline-role">Client</span><strong>Angular</strong><svg class="pipeline-arrow" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><path d="M1 8h21M16 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+        <li><span class="pipeline-role">API</span><strong>FastAPI</strong><svg class="pipeline-arrow" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><path d="M1 8h21M16 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+        <li><span class="pipeline-role">Message broker</span><strong>RabbitMQ</strong><svg class="pipeline-arrow" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><path d="M1 8h21M16 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+        <li><span class="pipeline-role">Background worker</span><strong>Dramatiq</strong><svg class="pipeline-arrow" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><path d="M1 8h21M16 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+        <li><span class="pipeline-role">AI service</span><strong>Azure OpenAI</strong></li>
+      </ol>
+      <div class="engineering-grid">
+        <div><h3>Validated before storage</h3><p>The generation worker parses model output as JSON and validates its structure with Pydantic before saving questions in PostgreSQL. Sessions, responses, and job state are also stored in the database.</p></div>
+        <div><h3>Updates without a refresh</h3><p>The client watches for WebSocket job updates and polls for questions every three seconds. When generation completes, it fetches the questions and stops polling.</p></div>
+        <div><h3>Results without a round trip</h3><p>The browser calculates multiple-choice and true/false scores immediately; a background request asks the backend to calculate and save the final score. Written-response summaries are calculated in the browser from the individual AI grading results.</p></div>
+      </div>
+    </section>
+  </main>
+  <footer class="container"><span>Christopher Butcher</span><a href="#main">Back to top ↑</a></footer>
+  <dialog class="lightbox" aria-labelledby="lightbox-title">
+    <div class="lightbox-toolbar"><p class="lightbox-title" id="lightbox-title">Screenshot</p><button class="lightbox-close" type="button" aria-label="Close screenshot">×</button></div>
+    <img alt="" />
+  </dialog>
+  <script src="carousel.js" defer></script>
+</body>
+</html>
