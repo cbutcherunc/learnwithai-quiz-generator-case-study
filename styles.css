@@ -89,7 +89,7 @@ figcaption strong { display: block; color: var(--ink); font-size: 14px; font-wei
 .stack div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding: 8px 0; }
 .stack dt { color: var(--muted); }
 .stack dd { margin: 0; }
-.walkthrough { border-top: 1px solid var(--line); padding-top: 40px; }
+.walkthrough { border-top: 1px solid var(--line); padding-top: 40px; scroll-margin-top: 8px; }
 .section-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-bottom: 24px; align-items: end; }
 .section-intro .section-label { margin-bottom: 16px; }
 .section-intro h2 { max-width: 440px; margin-bottom: 0; }

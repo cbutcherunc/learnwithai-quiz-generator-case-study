@@ -11,7 +11,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header container">
     <a class="name" href="#main">Christopher Butcher</a>
-    <nav aria-label="Page sections"><a href="#contribution">My Contribution</a><a href="#walkthrough-title">The Student Experience</a><a href="#engineering-title">Engineering</a></nav>
+    <nav aria-label="Page sections"><a href="#contribution">My Contribution</a><a href="#walkthrough">The Student Experience</a><a href="#engineering-title">Engineering</a></nav>
   </header>
   <main id="main" class="container">
     <section class="intro" aria-labelledby="project-title">
@@ -27,7 +27,7 @@
 
     <div class="project-brief">
       <section id="contribution" class="contribution-section" aria-labelledby="contribution-title">
-        <p class="section-label">My contribution</p><h2 id="contribution-title">Building the <br />backend.</h2><p class="section-summary">My work covered the path from a student’s source material to validated, stored quiz questions.</p>
+        <p class="section-label">My Contribution</p><h2 id="contribution-title">Building the <br />backend.</h2><p class="section-summary">My work covered the path from a student’s source material to validated, stored quiz questions.</p>
         <ul class="contributions">
           <li>Built the asynchronous quiz-generation pipeline with RabbitMQ and Dramatiq so model generation runs outside the API request.</li>
           <li>Integrated Azure OpenAI and used Pydantic to validate the structure of generated questions before saving them.</li>
@@ -49,7 +49,7 @@
       </section>
     </div>
 
-    <section class="walkthrough" aria-labelledby="walkthrough-title">
+    <section id="walkthrough" class="walkthrough" aria-labelledby="walkthrough-title">
       <div class="section-intro">
         <div><p class="section-label">The student experience</p><h2 id="walkthrough-title">From setup to review</h2></div>
         <p>Students start with their own notes or PDFs, then choose multiple-choice, true/false, or written-response questions. Each path leads from practice to feedback and review.</p>
@@ -140,7 +140,7 @@
     <section class="engineering" aria-labelledby="engineering-title">
       <div class="section-intro">
         <div><p class="section-label">Engineering</p><h2 id="engineering-title">Built around <br />background work.</h2></div>
-        <p>Generation and written-response grading run as background jobs. FastAPI enqueues work through RabbitMQ, the message broker. Separate Dramatiq workers process those jobs and call Azure OpenAI.<br /><a class="text-link technical-link" href="https://gist.github.com/cbutcherunc/6b3a449043dd774e31dd10914a03a437" target="_blank" rel="noopener noreferrer">Read the technical documentation <span aria-hidden="true">↗</span></a></p>
+        <p>Generation and written-response grading run as background jobs. FastAPI enqueues work through RabbitMQ, the message broker. Separate Dramatiq workers process those jobs and call Azure OpenAI.<br /><a class="text-link technical-link" href="https://github.com/cbutcherunc/learnwithai-quiz-generator-case-study/blob/main/quiz-generator.md" target="_blank" rel="noopener noreferrer">Read the technical documentation <span aria-hidden="true">↗</span></a></p>
       </div>
       <ol class="pipeline" aria-label="Question generation request path">
         <li><span class="pipeline-role">Client</span><strong>Angular</strong><svg class="pipeline-arrow" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><path d="M1 8h21M16 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
